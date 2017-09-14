@@ -1499,7 +1499,7 @@ func (ps *PrintSettings) GetPageRanges() (int, *PageRanges) {
 	if length == 0 {
 		return 0, &PageRanges{nil}
 	}
-	slice := (*[1 << 30]C.GtkPageRange)(unsafe.Pointer(ranges))[:length:length]
+	slice := (*[1 << 26]C.GtkPageRange)(unsafe.Pointer(ranges))[:length:length]
 	t := &PageRanges{slice}
 	runtime.SetFinalizer(t, (*PageRanges).free)
 	return length, t
